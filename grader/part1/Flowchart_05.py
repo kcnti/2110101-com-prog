@@ -16,7 +16,7 @@ if c == "S":
             p = p + str(n)
             i = i + 1
             a = 10*(r - (n*t))
-            n = 10*((3*q) + r) // 5 - 10*n
+            n = 10*((3*q) + r) // t - 10*n
             q = 10*q
             r = a
         else:
@@ -33,5 +33,15 @@ if c == "S":
 
 elif c == 'R':
     n = int(input())
-    p = int()
-     # factorial
+    sigma = 0
+    for i in range(n+1):
+        sigma += ((-3)**(-i))/(2*i+1)
+    p = math.sqrt(12) * sigma
+    p = round(p, 12)
+    print("pi =", p)
+elif c == 'P':
+    p = math.sqrt(7 + math.sqrt(6 + math.sqrt(5)))
+    p = round(p, 6)
+    print("pi =", p)
+else:
+    print("Invalid")
