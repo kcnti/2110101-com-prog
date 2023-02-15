@@ -1,12 +1,11 @@
-f = [int(input()) for i in range(int(input()))]
-s = f + [int(i) for i in input().split()]
-t = []
+f = [int(input()) for i in range(int(input()))] + [int(i) for i in input().split()]
 while(1):
     a = int(input())
     if a == -1: break
-    s.append(a)
-s.sort(reverse=True)
-out = [s[i] for i in range(len(s)) if not i%2] + [s[-i] for i in range(len(s)) if i%2]
+    f.append(a)
 
-print(out) 
+out = []
+for i in range(len(f)):
+    out.insert(0, f[i]) if i%2 else out.append(f[i])
 
+print(out)
