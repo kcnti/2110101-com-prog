@@ -5,10 +5,7 @@ def rotate_right(s, n):
     return s[len(s)-1:] + s[:len(s)-1]
 
 def str_mod(s, n):
-    output = ""
-    for i in s:
-        output += str(int(i)%n)
-    return output
+    return "".join([str(int(i)%n) for i in s])
 
 def main():
     s = input()
