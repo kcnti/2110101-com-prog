@@ -1,8 +1,8 @@
-AGI = [int(i) for i in input().split()]
+AQI = [int(i) for i in input().split()]
 
 output = "AQI|1 2 3 4 5\n-------------\n"
 
-for n, i in enumerate(AGI):
+for n, i in enumerate(AQI):
     tmp = ""
     if i <= 25:
         tmp += "+" + "." * 8
