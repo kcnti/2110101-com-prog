@@ -3,3 +3,5 @@ test/
 test.py
 _hw*
 *6532018321*
+.DS_Store
+*.swp
