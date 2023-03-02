@@ -9,6 +9,7 @@ oper = input().strip()
 for i in n:
     if not i.upper() in 'ATGC':
         oper = 0
+        break
 
 if oper == 'R':
     out = ''
