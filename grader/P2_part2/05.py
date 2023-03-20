@@ -1,22 +1,31 @@
 a = input().strip()
 al = a.lower()
-a_d = {c:al.count(c) for c in sorted(set(al)) if c.isalpha()}
+a_d = [[c, al.count(c)] for c in sorted(set(al)) if c.isalpha()]
 b = input().strip()
 bl = b.lower()
-b_d = {c:bl.count(c) for c in sorted(set(bl)) if c.isalpha()}
+b_d = [[c, bl.count(c)] for c in sorted(set(bl)) if c.isalpha()]
 
 acheck = 0
 print(a)
 for i in a_d:
-    if i in b_d and a_d[i] > b_d[i]:
-        dif = abs(a_d[i] - b_d[i])
-        if dif > 1: i += "'s"
-        print(' - remove {} {}'.format(dif, i))
+    b_c = ""
+    for c in b_d:
+        if i[0] == c[0]:
+            b_c = c
+            break
+
+    p = i[0]
+    if b_c and i[1] > b_c[1]:
+        dif = abs(i[1] - b_c[1])
+        if dif > 1:
+            p = i[0] + "'s"
+        print(' - remove {} {}'.format(dif, p))
         acheck = 1
-    if not i in b_d:
-        dif = a_d[i]
-        if dif > 1: i += "'s"
-        print(' - remove {} {}'.format(dif, i))
+    elif not b_c:
+        dif = i[1]
+        if dif > 1:
+            p = i[0] + "'s"
+        print(' - remove {} {}'.format(dif, p))
         acheck = 1
 
 if not acheck:
@@ -25,15 +34,21 @@ if not acheck:
 bcheck = 0
 print(b)
 for i in b_d:
-    if i in a_d and b_d[i] > a_d[i]:
-        dif = abs(a_d[i] - b_d[i])
-        if dif > 1: i += "'s"
-        print(' - remove {} {}'.format(dif, i))
+    a_c = ""
+    for c in a_d:
+        if i[0].lower() == c[0].lower():
+            a_c = c
+            break
+
+    if a_c and i[1] > a_c[1]:
+        dif = abs(i[1] - a_c[1])
+        if dif > 1: i[0] += "'s"
+        print(' - remove {} {}'.format(dif, i[0]))
         bcheck = 1
-    if not i in a_d:
-        dif = b_d[i]
-        if dif > 1: i += "'s"
-        print(' - remove {} {}'.format(dif, i))
+    elif not a_c:
+        dif = i[1]
+        if dif > 1: i[0] += "'s"
+        print(' - remove {} {}'.format(dif, i[0]))
         bcheck = 1
 if not bcheck:
     print(' - None')

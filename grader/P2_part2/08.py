@@ -1,7 +1,7 @@
 def to_Thai(N):
     tuaThai = {
         0: "soon",
-        1: "nueng",
+        1: "neung",
         2: "song",
         3: "sam",
         4: "si",
@@ -15,7 +15,7 @@ def to_Thai(N):
         1000: "pun"
     }
     out = ""
-    ised = "ed" if N%10 == 1 else ""
+    ised = "et" if N%10 == 1 and len(str(N)) > 1 else ""
     while(N >= 0):
         if N//1000 > 0:
             out += tuaThai[N//1000] + " " + tuaThai[1000] + " "
@@ -26,10 +26,16 @@ def to_Thai(N):
         elif N//10 > 0:
             if N//10 == 2:
                 out += "yi" + " "
+            elif N//10 == 1:
+                pass
+            else:
+                out += tuaThai[N//10] + " "
             out += "sip" + " "
             N %= 10
         else:
             if ised:
+                break
+            if N == 0 and len(out) > 1:
                 break
             out += tuaThai[N]
             break
